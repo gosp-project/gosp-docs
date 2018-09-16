@@ -1,0 +1,51 @@
+@import "util/config";
+@import "util/class-mapping";
+@import "util/functions";
+
+/*
+ *      ___          ___          ___          ___   
+ *     /\__\        /\  \        /\__\        /\  \  
+ *    /:/ _/_      /::\  \      /:/ _/_      /::\  \ 
+ *   /:/ /\  \    /:/\:\  \    /:/ /\  \    /:/\:\__\
+ *  /:/ /::\  \  /:/  \:\  \  /:/ /::\  \  /:/ /:/  /
+ * /:/__\/\:\__\/:/__/ \:\__\/:/_/:/\:\__\/:/_/:/  / 
+ * \:\  \ /:/  /\:\  \ /:/  /\:\/:/ /:/  /\:\/:/  /  
+ *  \:\  /:/  /  \:\  /:/  /  \::/ /:/  /  \::/__/   
+ *   \:\/:/  /    \:\/:/  /    \/_/:/  /    \:\  \   
+ *    \::/  /      \::/  /       /:/  /      \:\__\  
+ *     \/__/        \/__/        \/__/        \/__/  
+ * 
+ *
+ * @version: #{$gosp-version}
+ * @author: @fdorantesm
+ * @website: https://gosp.dorant.es
+ * @github: https://github.com/fdorantesm/gosp-css
+ *
+*/
+
+@import "util/media";
+@import "util/placeholders";
+@import "util/helpers/generals";
+@import "util/grid";
+@import "util/responsive-classes";
+@import "util/helpers/anchor";
+@import "util/helpers/background";
+@import "util/helpers/border";
+@import "util/helpers/box-sizing";
+@import "util/helpers/colors";
+@import "util/helpers/cursor";
+@import "util/helpers/display";
+@import "util/helpers/flex";
+@import "util/helpers/float";
+@import "util/helpers/font";
+@import "util/helpers/form";
+@import "util/helpers/height";
+@import "util/helpers/list";
+@import "util/helpers/margin-and-padding";
+@import "util/helpers/opacity-and-visibility";
+@import "util/helpers/position";
+@import "util/helpers/table";
+@import "util/helpers/text";
+@import "util/helpers/vertical-align";
+@import "util/helpers/visible-and-hidden";
+@import "util/helpers/z-index";

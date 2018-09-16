@@ -1,0 +1,5 @@
+@each $z in $gosp-z-indexes {
+	.z#{$z}{
+		z-index: $z;
+	}
+}

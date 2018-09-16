@@ -1,0 +1,30 @@
+{
+  "name": "gosp.css",
+  "version": "1.0.20",
+  "description": "A light weight powerful css library to make front-end fast",
+  "main": "gosp.js",
+  "scripts": {
+    "start": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fdorantesm/gosp.css.git"
+  },
+  "keywords": [
+    "css",
+    "object",
+    "oriented",
+    "grid"
+  ],
+  "author": "fdorantesm <fedormon@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-remove-empty-lines": "^0.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^4.0.1",
+    "gulp-sourcemaps": "^2.6.4"
+  }
+}

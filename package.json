@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "gosp.css": "^1.0.20",
+    "pug": "^2.0.3",
+    "pug-plain-loader": "^1.0.0",
+    "sass-loader": "^7.1.0",
+    "vuepress": "^0.14.4"
+  }
+}

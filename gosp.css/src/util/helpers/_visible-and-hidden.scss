@@ -1,0 +1,175 @@
+.visible,
+.visible-xs,
+.hidden-sm,
+.hidden-md,
+.hidden-lg,
+.hidden-xl,
+.hidden-sm-up,
+.hidden-md-up,
+.hidden-lg-up,
+.hidden-xl-up,
+.visible-sm-down,
+.visible-md-down,
+.visible-lg-down,
+{
+	@include show;
+}
+	
+.hidden,
+.hidden-xs,
+.visible-sm,
+.visible-md,
+.visible-lg,
+.visible-xl,
+.visible-sm-up,
+.visible-md-up,
+.visible-lg-up,
+.hidden-sm-down,
+.hidden-md-down,
+.hidden-lg-down,
+{
+	@include hide;
+}
+
+@include xs {
+	.hidden-sm-down,
+	.hidden-md-down,
+	.hidden-lg-down,
+	.visible-sm-up,
+	.visible-md-up,
+	.visible-lg-up,
+	{
+		@include hide;
+	}
+	
+	.visible-xs,
+	.visible-sm-down,
+	.visible-md-down,
+	.visible-lg-down,
+	{
+		@include show;
+	}
+}
+
+@include sm {
+	.hidden-sm,
+	.visible-xs,
+	.visible-md,
+	.visible-lg,
+	.visible-xl,
+	.visible-md-up,
+	.visible-lg-up,
+	.hidden-sm-up,
+	.hidden-md-down,
+	.hidden-lg-down,
+	{
+		@include hide;
+	}
+
+	.visible-sm,
+	.visible-sm-up,
+	.visible-md-down,
+	.visible-lg-down,
+	.hidden-xs,
+	.hidden-md,
+	.hidden-md-up,
+	.hidden-lg,
+	.hidden-lg-up,
+	.hidden-xl,
+	{
+		@include show;
+	}
+}
+@include md {
+	.hidden-md,
+	.visible-xs,
+	.visible-sm,
+	.visible-sm-down,
+	.hidden-sm-up,
+	.hidden-md-up,
+	.hidden-md-down,
+	.hidden-lg-down,
+	{
+		@include hide;
+	}
+	
+	.visible-md,
+	.visible-md-up,
+	.visible-md-down,
+	.visible-sm-up,
+	.hidden-xs,
+	.hidden-sm,
+	.hidden-lg,
+	.hidden-xl,
+	.hidden-sm-down,
+	.hidden-lg-up,
+	{
+		@include show;
+	}
+}
+
+@include lg {
+
+	.hidden-lg,
+	.hidden-md-up,
+	.hidden-sm-up,
+	.visible-sm-down,
+	.visible-md-down,
+	.hidden-lg-down,
+	.hidden-lg-up,
+	.visible-xs,
+	.visible-sm,
+	.visible-md,
+	.visible-xl
+	{
+		@include hide;
+	}
+	
+	.visible-lg,
+	.visible-lg-up,
+	.visible-lg-down,
+	.hidden-xl,
+	.hidden-md,
+	.hidden-md-down,
+	.hidden-md-up,
+	.hidden-sm-down,
+	.hidden-sm-up,
+	.hidden-xs,
+	.hidden-sm,
+	{
+		@include show;
+	}
+}
+
+@include xl {
+	
+	.hidden-xl,
+	.hidden-sm-up,
+	.hidden-md-up,
+	.hidden-lg-up,
+	.visible-xs,
+	.visible-sm,
+	.visible-md,
+	.visible-lg,
+	.visible-sm-down,
+	.visible-md-down,
+	.visible-lg-down,
+	{
+		@include hide;
+	}
+	
+	.visible-xl,
+	.hidden-xs,
+	.hidden-sm,
+	.hidden-md,
+	.hidden-lg,
+	.visible-md-up,
+	.visible-sm-up,
+	.visible-lg-up,
+	.hidden-lg-down,
+	.hidden-md-down,
+	.hidden-sm-down,
+	{
+		@include show;
+	}
+}

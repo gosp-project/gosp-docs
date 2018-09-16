@@ -1,0 +1,27 @@
+@include classmap(text-transform, $gosp-text-transform);
+@include classmap(text-align, $gosp-text-align);
+@include classmap(font-style, $gosp-font-style);
+@include classmap(font-weight, $gosp-font-weight);
+@include classmap(text-decoration, $gosp-text-decoration);
+@include classmap(text-direction, $gosp-text-direction);
+
+@each $key, $val in $gosp-decoration-style {
+	.tds#{$key} {
+		text-decoration-style: $val;
+	}
+}
+	
+p.paragraph-reset {
+	@extend .m0;
+}
+
+h1,h2,h3,h4,h5,h6 {	
+	line-height: $gosp-headings-line-height;
+	font-weight: $gosp-headings-font-weight;
+}
+
+@each $i, $h in $gosp-headings {
+	h#{$i} {
+		font-size: $h;
+	}
+}

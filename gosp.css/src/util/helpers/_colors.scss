@@ -1,0 +1,5 @@
+@each $i, $color in $gosp-colors {
+	.c#{$i} {
+		color: $color;
+	}
+}

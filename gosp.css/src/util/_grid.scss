@@ -1,0 +1,213 @@
+@import "mixins";
+@import "functions";
+
+@if $gosp-grid-fractionary {
+	@warn "The fractionary grid is not optimized, it's experimental and it's not recommended to use yet.";
+}
+
+.container,
+.container-fluid {	
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.container {
+	width: 90%;
+}
+	
+.row {	
+	@if isFlex() {
+		display: flex;
+		flex: 0 1 auto;
+		flex-direction: row;
+		flex-wrap: wrap;
+		
+		&.as-reverse {
+			  flex-direction: row-reverse
+		}
+		
+		&.as-column-reverse {
+			flex-direction: column-reverse;
+		}
+		
+		&.as-column {
+			flex-direction: column;
+		}
+
+		&.as-row {
+			flex-direction: row;
+		}
+	}
+	
+	@else if $gosp-grid-type == 'inline' {
+		letter-spacing: -0.31em;
+		*letter-spacing: normal;
+		word-spacing: -0.43em;
+
+	}
+	
+	@else if $gosp-grid-type == 'float' {
+		display: table;
+		&:after
+		&:before {
+			content: ' ';
+			clear: both;
+			@extend .row;
+		}
+	}
+}
+				
+[class*="col-"] {	
+	width: 100%;
+	@if ($gosp-grid-column-gutter > 0) {
+		padding: {
+			right: $gosp-grid-column-gutter;
+			left: $gosp-grid-column-gutter;
+		}
+	}
+	
+	@if isFlex() {
+		flex: 0 0 auto;
+	}
+	
+	@if $gosp-grid-type == 'inline' {
+		display: inline-block;
+		vertical-align: top;
+		zoom: 1;
+		*display: inline;
+		letter-spacing: normal;
+		word-spacing: normal;
+	}
+		
+	@else if $gosp-grid-type == 'float' {
+		float: left;
+	}
+		
+}
+
+[class*="-push-"],
+[class*="-pull-"],
+{
+	position: relative;
+}
+
+
+@if $gosp-responsive {
+
+	@include grid(xs, $gosp-grid-type);
+	
+	@include xs {
+		.container {
+			max-width: em(460px);
+		}
+		
+		@if isFlex() {
+			.#{columnPrefix(xs)},
+			.#{columnPrefix(sm)},
+			.#{columnPrefix(md)},
+			.#{columnPrefix(lg)},
+			{
+				flex-basis: 100%;
+				width: 100%;
+			}
+
+			[class*="#{columnPrefix(sm)}-"],
+			[class*="#{columnPrefix(md)}"],
+			[class*="#{columnPrefix(lg)}-"],
+			{
+				width: 100%;
+				flex-basis: auto;
+			}
+		}
+	}
+			
+	@include sm-down {
+		@if $gosp-grid-type == 'float' {
+			@include grid(sm, $gosp-grid-type);
+		}
+	}
+
+	@include sm-up {	
+		.container {
+			width: 90%;
+			max-width: em(576px);
+		}
+		
+		@if isFlex() {	
+			.#{columnPrefix(xs)},
+			.#{columnPrefix(sm)} {
+				flex-basis: 0;
+				flex-grow: 1;
+			}
+
+			[class*="#{columnPrefix(md)}"],
+			[class*="#{columnPrefix(lg)}"],
+			[class*="#{columnPrefix(xl)}"],
+			{
+				width: 100%;
+				flex-basis: auto;
+			}
+		}
+
+
+		@include grid(sm, $gosp-grid-type);
+	}
+}
+
+@include md-up {	
+	.container {	
+		width: 90%;
+		max-width: em(1200px);
+	}
+	
+	@if isFlex() {	
+		.#{columnPrefix(xs)},
+		.#{columnPrefix(sm)},
+		.#{columnPrefix(md)},
+		.#{columnPrefix(lg)}
+		{
+			flex-basis: 0;
+			flex-grow: 1;
+		}
+		
+		.#{columnPrefix(xl)} {
+			flex-basis: 100%;
+			width: 100%;
+		}
+	}
+
+	@include grid(md, $gosp-grid-type);
+	
+}
+	
+@include lg-up {
+	.container {
+		width: 85%;
+		max-width: em(1366px);
+	}
+	
+	@if isFlex() {
+		.#{columnPrefix(lg)} {
+			flex-basis: 0;
+			flex-grow: 1;
+		}
+	}		
+
+	@include grid(lg, $gosp-grid-type);
+}
+
+@include xl {
+	.container {
+		width: 75%;
+		max-width: em(1600px);
+	}
+	
+	@if isFlex() {
+		.#{columnPrefix(xl)} {
+			flex-basis: 0;
+			flex-grow: 1;
+		}
+	}		
+		
+	@include grid(xl, $gosp-grid-type);
+}

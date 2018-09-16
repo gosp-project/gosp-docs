@@ -1,0 +1,15 @@
+@include classmap(position, $gosp-position);
+@include class(t, top, px, 0, 50, 5);
+@include class(l, left, px, 0, 50, 5);
+@include class(r, right, px, 0, 50, 5);
+@include class(b, bottom, px, 0, 50, 5);
+
+.abs {
+	@extend .pa;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+}

@@ -1,0 +1,15 @@
+.ma {
+	margin: auto;
+}
+	
+.m0a {
+	margin: 0 auto;
+}
+
+@each $key, $val in $gosp-margin {
+	@include class($key,  $val, px, 0, 50, 5);
+}
+
+@each $key, $val in $gosp-padding {
+	@include class($key,  $val, px, 0, 50, 5);
+}

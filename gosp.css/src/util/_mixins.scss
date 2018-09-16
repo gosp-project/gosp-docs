@@ -1,0 +1,270 @@
+@import "functions";
+
+@mixin class($prefix, $attr, $type, $start: 0, $end: 50, $gap: 5, $important: false) {
+	@for $i from ($start/$gap) through ($end/$gap){
+		$raw: $i * $gap;
+		$val: null;
+		
+		@if isDecimal($raw){
+			$val: $raw * 100;
+		}
+		@else{	
+			$val: if(isDecimal($gap), $raw * 100, $raw);
+		}
+
+		$value: unquote($raw + $type);
+		
+		.#{$prefix + $val}{
+			#{$attr}: if($important, $value !important, $value);
+		}	
+	}
+}
+
+@mixin media($size, $min: true, $max: true) {
+	@if $max and $min {
+		@media only screen and (min-width: breakpoint($size, min)) and (max-width: breakpoint($size, max)) {
+			@content;
+		}
+	}
+	@else{
+		@if $max {
+			@media only screen and (max-width: if(breakpoint($size, max) !=null, breakpoint($size, max), breakpoint($size, min) - 1)) {
+				@content;
+			}
+		}
+
+		@if $min {
+			@media only screen and (min-width: if(breakpoint($size, min) != null, breakpoint($size, min), breakpoint($size, max) + 1)) {
+				@content;
+			}	
+		}
+	}
+}
+
+@mixin hide() {
+	display: none;
+}
+
+@mixin show() {
+	display: initial;
+}
+
+@mixin center-box($size, $side: null) {
+	.#{$size}#{if($side, '-' + $side, '')} {
+		&-center {
+			&-align {
+				margin: {
+					left: auto;
+					right: auto;
+				}
+			}
+		}
+	}
+}
+
+@mixin grid($size, $type: 'flex', $columns: $gosp-grid-columns, $fractionary: $gosp-grid-fractionary) {
+
+	@if isFlex() {	
+		.col {	
+			flex-grow: 1;
+			flex-basis: 0;
+			max-width: 100%;
+			&-auto {
+				width: auto;
+			}
+		}
+
+		.#{$size} {
+			&-start {
+				justify-content: flex-start;
+			}
+
+			&-center {
+				justify-content: center;
+			}
+
+			&-end {
+				justify-content: flex-end;
+			}
+
+			&-around {
+				justify-content: space-around;
+			}
+
+			&-between {
+				justify-content: space-between;
+			}
+			
+			&-top {
+				align-items: flex-start;
+			}
+			
+			&-middle {
+				align-items: center;
+			}
+
+			&-bottom {
+				align-items: flex-end;
+			}
+
+			@if not $gosp-grid-fractionary {
+				&-1st, &-first {
+					order: -1;
+				}
+
+				&-2nd {
+					order: 2;
+				}
+
+				&-3rd {
+					order: 3;
+				}
+
+				@for $i from 4 through $gosp-grid-columns {
+					$nth: #{$i}th;
+					&-#{$nth} {
+						order: $i;
+					}
+
+					@if $i == $gosp-grid-columns {
+						&-last {
+							@extend .#{$size}-#{$nth};
+						}
+					}
+				}
+			}
+		}
+
+	}
+			
+	
+	@for $x from 1 through $columns {
+		//based on columns
+		@if not $gosp-grid-fractionary {
+			$width: percentage($x/$columns);
+			.col-#{$size}-#{$x} {
+				@if isFlex() {
+					flex-basis: $width;
+					max-width: $width;
+				}
+				@else {
+					width: $width;
+				}
+			}
+		}
+
+		//fractions columns
+		@else {
+			@for $y from 1 through $x {
+				@if $y!=$x {
+					$width: percentage($y/$x);
+					.col-#{$size}-#{$y + '-' + $x} {
+						width: $width;
+						@if not isFlex() {
+							@for $j from 0 to $x {
+								$width: percentage($j/$x);								
+								&.col-#{$size}-pull-#{$j} {
+									right: $width;
+								}
+								&.col-#{$size}-push-#{$j} {
+									left: $width;
+								}
+
+								&.col-#{$size}-offset-#{$j} {
+									margin-left: $width;
+								}
+							}
+							
+
+						}
+						
+						@if isFlex() {
+							@for $k from 1 through $x {
+								$sufix: if($k == 1, 'st', if($k == 2, 'nd', if($k == 3, 'rd', 'th')));
+								&.#{$size}-#{$k + $sufix} {
+									order: $k;
+								}
+							}
+						}						
+					}
+				}
+			}
+		}
+	}
+
+	@for $offset from 0 through $columns {
+		.col-#{$size}-offset-#{$offset} {
+			margin-left: percentage($offset/$columns);
+		}
+	}
+	
+	@if not $gosp-grid-fractionary {
+		@for $item from 0 through $columns {
+			.col-#{$size}-push-#{$item} {
+				left: percentage($item/$columns);
+			}
+			.col-#{$size}-pull-#{$item} {
+				right: percentage($item/$columns);
+			}
+		}
+		
+	}
+
+	@include classmap(text-align, $gosp-text-align, $size);
+}
+
+
+@mixin responsive-helpers($prefix: null) {
+	@each $key, $val in $gosp-margin {
+		@include class(#{$prefix + '-' + $key},  $val, px, 0, 50, 5);
+	}
+	
+	@each $key, $val in $gosp-padding {
+		@include class(#{$prefix + '-' + $key},  $val, px, 0, 50, 5);
+	}
+	
+	@include class(#{$prefix}-fsp, font-size, px, 8, 48, 2);
+	@include class(#{$prefix}-fsp, font-size, px, 50, 100, 10);
+
+	@include class(#{$prefix}-h, height, px, 0, 50, 10);
+	@include class(#{$prefix}-h, height, px, 100, 300, 50);
+	
+	@include classmap(align-items, $gosp-align-items, $prefix);
+	@include classmap(display, $gosp-display, $prefix);
+	@include classmap(flex-direction, $gosp-flex-direction, $prefix);
+	@include classmap(flex-wrap, $gosp-flex-wrap, $prefix);
+	@include classmap(float, $gosp-float, $prefix);
+	@include classmap(justify-content, $gosp-justify-content, $prefix);
+	@include classmap(position, $gosp-position, $prefix);
+
+}
+
+@mixin classmap($prop, $map, $prefix: null) {
+	@each $key, $val in $map {
+		.#{if($prefix, $prefix + '-' + $key, $key)} {
+			#{$prop}: $val;
+		}
+	}
+}
+
+@mixin list-columns($columns, $prefix: null) {
+	.#{if($prefix, $prefix + '-', '')}list-columns-#{$columns} {
+		columns: $columns;
+	}
+}
+
+@mixin list-helper($prefix: null){
+	.#{if($prefix, $prefix + '-', '')}list {
+		&-inline {
+			li {
+				display: inline-block;
+			}
+		}
+
+		&-block {
+			li {
+				display: block;
+			}
+		}
+	}
+}

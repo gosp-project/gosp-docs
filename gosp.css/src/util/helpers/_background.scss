@@ -1,0 +1,21 @@
+@each $i, $color in $gosp-colors {
+	.bc#{$i} {
+		background-color: $color;
+	}
+}
+
+.bn {
+	background: none;
+}
+
+.biu {
+	background-image: unset;
+}
+
+.baf {
+	background-attachment: fixed;
+}
+
+@include classmap(background-position, $gosp-background-position);
+@include classmap(background-repeat, $gosp-background-repeat);
+@include classmap(background-size, $gosp-background-size);
