@@ -3,7 +3,6 @@ const sidebar = {
 		'',
 		'get-started',
 		'configuration',
-		'variables',
 		'maps',
 		'mixins',
 	]

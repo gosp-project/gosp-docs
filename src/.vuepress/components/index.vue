@@ -63,15 +63,15 @@
 					.row.aic.jcc
 						.col-xs-12.tac
 							h1.fw300.fsp40.mt0(title="Oriented Objects CSS") 
-								div #[span.oocss GOSP].CSS
-								//- .fsp12 Oriented Object CSS
-							h2.fw300.fsp20
-								div The non intrusive lightweight library for sass 
-								div lets you make frontend faster and easier.
+								div #[span.oocss GOSP]
+								.fsp12 Garlic, onion, salt and pepper
+							h2.fw300.fsp20.xs-fsp16
+								div The non intrusive framework for sass 
+								div lets you make frontend easier and faster.
 						.col-auto
 							.p5
 								a.btn.flat(href="/docs/")
-									div Documentation
+									div Read Docs
 
 						.col-auto
 							.p5
