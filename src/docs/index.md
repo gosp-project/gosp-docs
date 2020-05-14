@@ -51,7 +51,7 @@ $ sass style.scss style.css
 
 ||URL|
 |:-|:-|
-|RawGit|https://cdn.rawgit.com/gosp-project/gosp-sass/master/dist/gosp.min.css|
+|RawGit|https://cdn.jsdelivr.net/gh/gosp-project/gosp-sass/dist/gosp.min.css|
 |Yarn|https://unpkg.net/npm/gosp.css@1.0.20/dist/gosp.min.css|
 |JSDelivr|https://cdn.jsdelivr.net/npm/gosp.css@1.0.20/dist/gosp.min.css|
 
